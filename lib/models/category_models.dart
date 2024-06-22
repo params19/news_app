@@ -1,6 +1,6 @@
 import 'dart:core';
 
-class CategoryModels{
+class CategoryModel{
   String? categoryName;
   String? image;
 }
