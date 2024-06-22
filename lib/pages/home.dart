@@ -34,6 +34,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
+              padding: const EdgeInsets.only(left: 10),
               height: 70,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -64,11 +65,14 @@ class CategoryTile extends StatelessWidget {
       child: Stack(children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(6),
-          child: Image.asset(image, width: 120, height: 60, fit: BoxFit.cover,)),
+          child: Image.asset(image, width: 120, height: 7 0, fit: BoxFit.cover,)),
         Container(
-          width: 120, height: 60,
-          color: Colors.black26,
-          child: Text(categoryName, style: const TextStyle(color: Colors.white,),),
+          width: 120, height: 70,
+          color: Colors.black38,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Center(child: Text(categoryName, style: const TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),)),
         )
       ],)
     );
