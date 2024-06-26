@@ -62,8 +62,8 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -78,9 +78,9 @@ class _HomeState extends State<Home> {
                   Text(
                     "View All",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0,
                     ),
                   ),
                 ],
@@ -107,7 +107,8 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 30),
-            buildIndicator(),
+
+            Center(child: buildIndicator(),),
           ],
         ),
       ),
@@ -155,7 +156,7 @@ class _HomeState extends State<Home> {
   Widget buildIndicator() => AnimatedSmoothIndicator(
     activeIndex: activeIndex,
     count: sliders.length,
-    effect: SlideEffect(
+    effect: const SlideEffect(
       dotWidth: 15,
       dotHeight: 15,
       activeDotColor: Colors.blue,
