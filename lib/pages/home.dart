@@ -71,7 +71,7 @@ Widget build(BuildContext context) {
               );
             }).toList(),
             options: CarouselOptions(
-              height: 200,
+              height: 250,
               // viewportFraction: 1,
               autoPlay: true,
               enlargeCenterPage: true ,
@@ -90,14 +90,18 @@ Widget build(BuildContext context) {
       children: [
         ClipRRect(
       borderRadius: BorderRadius.circular(10),
-      child: Image.asset(image, fit:BoxFit.cover, width: MediaQuery.of(context).size.width,)
+      child: Image.asset(image,height: 250, fit:BoxFit.cover, width: MediaQuery.of(context).size.width,)
       ),
       Container(
-        margin: const EdgeInsets.only(top: 130),
+        height: 250,
+        padding: const EdgeInsets.only(left: 10),
+        margin: const EdgeInsets.only(top: 170),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.black26,
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10))
         ),
+        child: Text(name,style: TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.bold),)
       )
   ]));
 }
