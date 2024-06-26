@@ -32,7 +32,10 @@ class _HomeState extends State<Home> {
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Flutter"),
+            Text(
+            "Flutter",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
             Text(
               "News",
               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
@@ -61,7 +64,9 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            const SizedBox(height: 30),
+
+            const SizedBox(height: 20),
+
             const Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
@@ -86,7 +91,9 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+
+            const SizedBox(height: 20),
+
             CarouselSlider.builder(
               itemCount: sliders.length,
               itemBuilder: (context, index, realIndex) {
@@ -106,9 +113,35 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             Center(child: buildIndicator(),),
+
+            const SizedBox(height: 30),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Trending News!",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  Text(
+                    "View All",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
