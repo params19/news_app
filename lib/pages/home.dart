@@ -4,11 +4,10 @@ import 'package:news_app/models/category_models.dart';
 import 'package:news_app/services/data.dart';
 import 'package:news_app/models/slider_model.dart';
 import 'package:news_app/services/slider_data.dart';
-
+ 
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -60,6 +59,9 @@ Widget build(BuildContext context) {
               },
             ),
           ),
+
+          SizedBox(height: 30,),
+
           CarouselSlider(
             items: sliders.map((slider) {
               return Builder(
@@ -70,9 +72,9 @@ Widget build(BuildContext context) {
             }).toList(),
             options: CarouselOptions(
               height: 200,
-              viewportFraction: 1,
+              // viewportFraction: 1,
               autoPlay: true,
-              enlargeCenterPage: true,
+              enlargeCenterPage: true ,
               enlargeStrategy: CenterPageEnlargeStrategy.height,
             ),
           ),
@@ -83,8 +85,21 @@ Widget build(BuildContext context) {
 }
 
   Widget buildImage(String image,int index, String name)=>Container(
-    child: Image.asset(image, fit:BoxFit.cover, width: MediaQuery.of(context).size.width,),
-  );
+    margin: const EdgeInsets.symmetric(horizontal: 5),
+    child: Stack(
+      children: [
+        ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Image.asset(image, fit:BoxFit.cover, width: MediaQuery.of(context).size.width,)
+      ),
+      Container(
+        margin: const EdgeInsets.only(top: 130),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.black26,
+        ),
+      )
+  ]));
 }
 
 class CategoryTile extends StatelessWidget {
@@ -100,13 +115,24 @@ class CategoryTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           child: Image.asset(image, width: 120, height: 70, fit: BoxFit.cover,)),
         Container(
-          width: 120, height: 70,
-          color: Colors.black38,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Center(child: Text(categoryName, style: const TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),)),
-        )
+  width: 120, 
+  height: 70,
+  decoration: BoxDecoration(
+    color: Colors.black38, // Specify color here
+    borderRadius: BorderRadius.circular(6), // And other decoration properties
+  ),
+  child: Center(
+    child: Text(
+      categoryName, 
+      style: const TextStyle(
+        color: Colors.white, 
+        fontSize: 15,
+        fontWeight: FontWeight.bold
+      ),
+    ),
+  ),
+)
+
       ],)
     );
   }
