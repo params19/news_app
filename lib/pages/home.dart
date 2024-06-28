@@ -1,23 +1,31 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:news_app/models/category_models.dart';
 import 'package:news_app/services/data.dart';
 import 'package:news_app/models/slider_model.dart';
 import 'package:news_app/services/slider_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+
+//This is the home page of the app
 class Home extends StatefulWidget {
   const Home({super.key});
-  
   @override
   State<Home> createState() => _HomeState();
 }
 
+
+//It contains the list of categories and the list of news
 class _HomeState extends State<Home> {
+
+  //List of categories: Business, Entertainment, General, Health, Science, Sports, Technology
   List<CategoryModel> categories = [];
+  //List of news
   List<SliderModel> sliders = [];
   int activeIndex = 0;
 
+  //Get the list of categories
   @override
   void initState() {
     categories = getCategories();
@@ -28,6 +36,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //AppBar : Flutter News
       appBar: AppBar(
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,6 +54,8 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.0,
       ),
+
+      //Body of the app: Contains the list of categories and the list of news
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +64,9 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(left: 10),
               height: 70,
               child: ListView.builder(
+
+                // If true, the scroll view will take up only as much space as its content
+                //Since the parent container has a fixed height, this ensures the ListView doesn't try to expand beyond it.
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
@@ -113,6 +127,8 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
+
+            
             const SizedBox(height: 20),
 
             Center(child: buildIndicator(),),
@@ -142,6 +158,57 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+            const SizedBox(height: 10),
+
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child :Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      "assets/sports.jpg",
+                      height: 120,
+                      width: 120,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(width: 8),
+
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.7,
+                      child: Text(
+                          "Australia vs England: 1st Test, Day 1",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.0,
+                          ),
+                        ),
+                    ),
+                    const SizedBox(height: 7),
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.7,
+                      child: Text(
+                          "India vs South Africa: Final 2024 WT20",
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+           )
           ],
         ),
       ),
