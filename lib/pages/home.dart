@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 14),
 
             const Padding(
               padding: EdgeInsets.all(10.0),
@@ -129,11 +129,11 @@ class _HomeState extends State<Home> {
             ),
 
             
-            const SizedBox(height: 20),
+            const SizedBox(height: 18),
 
             Center(child: buildIndicator(),),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
@@ -192,11 +192,11 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                     ),
-                    const SizedBox(height: 7),
+                    const SizedBox(height: 4),
                     Container(
                       width: MediaQuery.of(context).size.width/1.7,
                       child: Text(
-                          "India vs South Africa: Final 2024 WT20",
+                          "Live updates from the first Ashes Test between Australia and England at the Gabba.",
                           style: TextStyle(
                             color: Colors.black54,
                             fontWeight: FontWeight.w500,
