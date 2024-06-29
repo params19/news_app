@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_models.dart';
 import 'package:news_app/services/data.dart';
 import 'package:news_app/models/slider_model.dart';
+import 'package:news_app/services/news.dart';
 import 'package:news_app/services/slider_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,7 +25,9 @@ class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
   //List of news
   List<SliderModel> sliders = [];
+  List<ArticleModel> articles = [];
   int activeIndex = 0;
+  bool _loading = true;
 
   //Get the list of categories
   @override
@@ -31,6 +35,15 @@ class _HomeState extends State<Home> {
     categories = getCategories();
     sliders = getSliders();
     super.initState();
+  }
+
+  getNews() async {
+    News newsClass = News();
+    await newsClass.getNews();
+    articles = newsClass.news;
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
@@ -161,63 +174,8 @@ class _HomeState extends State<Home> {
               ),
         
             const SizedBox(height: 20),
-        
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child :Material(
-                elevation: 3,
-                borderRadius: BorderRadius.circular(10),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/sports.jpg",
-                            height: 120,
-                            width: 120,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                  
-                      const SizedBox(width: 8),
-                  
-                      Column(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width/1.7,
-                            child: Text(
-                                "Australia vs England: 1st Test, Day 1",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 17.0,
-                                ),
-                              ),
-                          ),
-                          const SizedBox(height: 4),
-                          Container(
-                            width: MediaQuery.of(context).size.width/1.7,
-                            child: Text(
-                                "Live updates from the first Ashes Test between Australia and England at the Gabba.",
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
-             ),
+            
+            
              const SizedBox(height: 10),
         
             Padding(
@@ -374,5 +332,75 @@ class CategoryTile extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class BlogTile extends StatelessWidget {
+  String imageUrl, title, desc;
+  BlogTile({required this.imageUrl, required this.title, required this.desc});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+              onTap: () {
+                
+              },
+            child :Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child :Material(
+                elevation: 3,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            imageUrl,
+                            height: 120,
+                            width: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                  
+                      const SizedBox(width: 8),
+                  
+                      Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width/1.7,
+                            child: Text(
+                                title,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 17.0,
+                                ),
+                              ),
+                          ),
+                          const SizedBox(height: 4),
+                          Container(
+                            width: MediaQuery.of(context).size.width/1.7,
+                            child: Text(
+                                desc,
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
+             ),
+            );
   }
 }
