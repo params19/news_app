@@ -160,7 +160,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
         
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
         
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
